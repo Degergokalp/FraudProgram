@@ -1,0 +1,15 @@
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/bin/Debug/net7.0/FraudProgram
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/bin/Debug/net7.0/FraudProgram.deps.json
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/bin/Debug/net7.0/FraudProgram.runtimeconfig.json
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/bin/Debug/net7.0/FraudProgram.dll
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/bin/Debug/net7.0/FraudProgram.pdb
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/obj/Debug/net7.0/FraudProgram.csproj.AssemblyReference.cache
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/obj/Debug/net7.0/FraudProgram.GeneratedMSBuildEditorConfig.editorconfig
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/obj/Debug/net7.0/FraudProgram.AssemblyInfoInputs.cache
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/obj/Debug/net7.0/FraudProgram.AssemblyInfo.cs
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/obj/Debug/net7.0/FraudProgram.csproj.CoreCompileInputs.cache
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/obj/Debug/net7.0/FraudProgram.dll
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/obj/Debug/net7.0/refint/FraudProgram.dll
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/obj/Debug/net7.0/FraudProgram.pdb
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/obj/Debug/net7.0/FraudProgram.genruntimeconfig.cache
+/Users/degergokalp/Desktop/fraud-program/FraudProgram/obj/Debug/net7.0/ref/FraudProgram.dll
