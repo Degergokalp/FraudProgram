@@ -28,13 +28,7 @@ class Program
         IBoundaryIndexProvider boundaryIndexProvider = new BoundaryIndexProviderFromConfig();
 
         var rule1 = new Rule1(boundaryIndexProvider, emailSender, dataProvider);
-          // Get the current boundary index from the provider
-        int currentBoundaryIndex = boundaryIndexProvider.Read();
-
-        // Increment the boundary index
-        int newBoundaryIndex = currentBoundaryIndex + 1;
-        
-        boundaryIndexProvider.Write(newBoundaryIndex);
+      
 
         var rules = new List<IRule>();
         rules.Add(rule1);

@@ -1,4 +1,5 @@
 using System.Data;
+using Microsoft.Extensions.Configuration;
 
 public class Rule1 : IRule
 {
@@ -12,6 +13,18 @@ public class Rule1 : IRule
         _boundaryIndexProvider = boundaryIndexProvider;
     }
 
+    private IConfiguration configuration;
+
+
+    public IConfiguration ConfigFile()
+    {
+        configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddIniFile("config.ini")
+            .Build();
+
+        return configuration;
+    }
     public void Execute()
     {
         DateTime timeLimit = DateTime.Now;
@@ -34,41 +47,52 @@ public class Rule1 : IRule
                 totalMoney += money;
                 
             }
+            int transactionLimit = int.Parse(configuration["Inputs:transaction_limit"]);
+            int moneyLimit = int.Parse(configuration["Inputs:money_limit"]);
+            
+            string email_user=configuration["Mail Settings:email_user"];
+            string email_send=configuration["Mail Settings:email_send"];
 
-            if (transactionCount > 10)
+            if (transactionCount > transactionLimit )
             {
-                if (totalMoney > 1000)
+                if (totalMoney > moneyLimit)
                 {
                     string subject = "Fraud Alert!/Tutar ve işlem limiti aşıldı";
                     string body = "Cariye para yükleme,\nBelirlenen işlem sayısı eşiğini ve toplam tutar miktarını aşmıştır,\n";
-                    body += $"{transactionCount} kere işlem yapmaya çalışmış,\nYapılan toplam cariye para yükleme miktarı: {totalMoney} .";
+                    body += $"{transactionCount} kere işlem yapmaya çalışmış,\nYapılan toplam cariye para yükleme miktarı: {totalMoney}. BusinessId: {transactionId}";
 
 
-                    _emailSender.SendEmailAsync("from@example.com", "your_password", "to@example.com", subject, body);
+                    _emailSender.SendEmailAsync(email_user, "your_password", email_send, subject, body);
                     // CreateTicket();
                 }
                 else
                 {
                     string subject = "Fraud Alert!/İşlem limiti aşıldı";
                     string body = "Cariye para yükleme,\nBelirlenen işlem sayısı eşiğini aşmıştır,\n";
-                    body += $"{transactionCount} kere işlem yapmaya çalışmış,\nYapılan toplam cariye para yükleme miktarı: {totalMoney} .";
+                    body += $"{transactionCount} kere işlem yapmaya çalışmış,\nYapılan toplam cariye para yükleme miktarı: {totalMoney}.  BusinessId: {transactionId}";
 
 
-                    _emailSender.SendEmailAsync("from@example.com", "your_password", "to@example.com", subject, body);
+                    _emailSender.SendEmailAsync(email_user, "your_password", email_send, subject, body);
                     // CreateTicket();
                 }
             }
-            else if (totalMoney >= 1000)
+            else if (totalMoney >= moneyLimit)
             {
                 string subject = "Fraud Alert!/Tutar limiti aşıldı";
                 string body = "Cariye para yükleme,\nBelirlenen toplam tutar miktarını aşmıştır,\n";
-                body += $"Yapılan toplam cariye para yükleme miktarı: {totalMoney} .";
+                body += $"Yapılan toplam cariye para yükleme miktarı: {totalMoney}.  BusinessId: {transactionId}";
 
 
-                _emailSender.SendEmailAsync("from@example.com", "your_password", "to@example.com", subject, body);
+                _emailSender.SendEmailAsync(email_user, "your_password",email_send, subject, body);
                 // CreateTicket();
             }
+        
 
+        // Increment the boundary index
+        int newBoundaryIndex = lastIndex + 1;
+
+        // Write the new boundary index to the provider
+        _boundaryIndexProvider.Write(newBoundaryIndex);
         }
     }
 }
